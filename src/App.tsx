@@ -12,11 +12,11 @@ import {
     Grid,
 } from "@mui/material";
 import {
-    NoteAlt,
     PlayCircle,
     StopCircle,
     FreeBreakfast,
-    RestartAlt
+    AccessTime,
+    Snooze
 } from "@mui/icons-material";
 
 function App() {
@@ -75,19 +75,27 @@ function App() {
                                                 onChange={handleChangeValue}
                                             >
                                                 <BottomNavigationAction
-                                                    label="Work"
+                                                    label="Pomodoro"
                                                     value="work"
-                                                    icon={<NoteAlt />}
+                                                    icon={<AccessTime />}
                                                     onClick={() =>
                                                         setCurrentTime("work")
                                                     }
                                                 />
                                                 <BottomNavigationAction
-                                                    label="Short"
+                                                    label="Receso"
                                                     value="short"
                                                     icon={<FreeBreakfast />}
                                                     onClick={() =>
                                                         setCurrentTime("short")
+                                                    }
+                                                />
+                                                <BottomNavigationAction
+                                                    label="Descanso"
+                                                    value="long"
+                                                    icon={<Snooze />}
+                                                    onClick={() =>
+                                                        setCurrentTime("long")
                                                     }
                                                 />
                                             </BottomNavigation>
@@ -96,7 +104,6 @@ function App() {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Countdown
-                                        keycount={pomodoro}
                                         timer={timer}
                                         animate={startAnimate}
                                     />
@@ -114,7 +121,7 @@ function App() {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <ButtonCall _callback={settingsBtn}>
-                                        Settings
+                                        Configurar
                                     </ButtonCall>
                                 </Grid>
                             </Grid>

@@ -26,7 +26,7 @@ export interface Context {
 export const SettingsContext = createContext<Context>();
 
 export const SettingsContextProvider = (props: Props) => {
-    const [pomodoro, setpomodoro] = useState(0);
+    const [pomodoro, setpomodoro] = useState(1);
     const [timer, settimer] = useState(0);
     const [executing, setexecuting] = useState({} as InputForm);
     const [startAnimate, setstartAnimate] = useState(false);
@@ -77,6 +77,9 @@ export const SettingsContextProvider = (props: Props) => {
                 break;
             case "short":
                 settimer(evaluate.short);
+                break;
+            case "long":
+                settimer(evaluate.long);
                 break;
             default:
                 settimer(0);

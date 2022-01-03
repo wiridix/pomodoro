@@ -7,6 +7,7 @@ import { ButtonCall } from "./Button";
 export interface InputForm {
     work: number;
     short: number;
+    long: number;
     active: string;
 }
 
@@ -17,6 +18,7 @@ export const SetPomodor = () => {
     const [newTimer, setnewTimer] = useState<InputForm>({
         work: 25,
         short: 5,
+        long: 15,
         active: "work",
     });
 
@@ -44,6 +46,15 @@ export const SetPomodor = () => {
             : setnewTimer({ ...newTimer, short: newTimer.short - 1 });
     };
 
+    const handlecontadorLongup = () =>
+        setnewTimer({ ...newTimer, long: newTimer.long + 1 });
+
+    const handlecontadorLongdown = () => {
+        newTimer.short === 1
+            ? setnewTimer({ ...newTimer, long: 1 })
+            : setnewTimer({ ...newTimer, long: newTimer.long - 1 });
+    };
+
     return (
         <>
             <Box
@@ -67,40 +78,74 @@ export const SetPomodor = () => {
                         }}
                     >
                         <Grid item xs={12}>
-                            <h2>Work</h2>
+                            <h2>Pomodoro</h2>
                         </Grid>
-                        <Grid item xs={4}>
-                            <ButtonCall _callback={handlecontadorWorkdown}>
-                                <ArrowDownward />
-                            </ButtonCall>
-                        </Grid>
-                        <Grid item xs={4}>
-                            <h3>{newTimer.work}</h3>
-                        </Grid>
-                        <Grid item xs={4}>
-                            <ButtonCall _callback={handlecontadorWorkup}>
-                                <ArrowUpward />
-                            </ButtonCall>
+                        <Grid
+                            container
+                            rowSpacing={3}
+                            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                        >
+                            <Grid item xs={4}>
+                                <ButtonCall _callback={handlecontadorWorkdown}>
+                                    <ArrowDownward />
+                                </ButtonCall>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <h3>{newTimer.work}</h3>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <ButtonCall _callback={handlecontadorWorkup}>
+                                    <ArrowUpward />
+                                </ButtonCall>
+                            </Grid>
                         </Grid>
                         <Grid item xs={12}>
-                            <h2>Short</h2>
+                            <h2>Receso</h2>
                         </Grid>
-                        <Grid item xs={4}>
-                            <ButtonCall _callback={handlecontadorShortdown}>
-                                <ArrowDownward />
-                            </ButtonCall>
+                        <Grid
+                            container
+                            rowSpacing={3}
+                            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                        >
+                            <Grid item xs={4}>
+                                <ButtonCall _callback={handlecontadorShortdown}>
+                                    <ArrowDownward />
+                                </ButtonCall>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <h3>{newTimer.short}</h3>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <ButtonCall _callback={handlecontadorShortup}>
+                                    <ArrowUpward />
+                                </ButtonCall>
+                            </Grid>
                         </Grid>
-                        <Grid item xs={4}>
-                            <h3>{newTimer.short}</h3>
+                        <Grid item xs={12}>
+                            <h2>Descanso</h2>
                         </Grid>
-                        <Grid item xs={4}>
-                            <ButtonCall _callback={handlecontadorShortup}>
-                                <ArrowUpward />
-                            </ButtonCall>
+                        <Grid
+                            container
+                            rowSpacing={3}
+                            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                        >
+                            <Grid item xs={4}>
+                                <ButtonCall _callback={handlecontadorLongdown}>
+                                    <ArrowDownward />
+                                </ButtonCall>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <h3>{newTimer.long}</h3>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <ButtonCall _callback={handlecontadorLongup}>
+                                    <ArrowUpward />
+                                </ButtonCall>
+                            </Grid>
                         </Grid>
                         <Grid item xs={12}>
                             <ButtonCall _callback={handleSubmit}>
-                                Set Timer
+                                Guardar
                             </ButtonCall>
                         </Grid>
                     </Grid>

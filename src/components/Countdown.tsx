@@ -4,7 +4,6 @@ import { Context, SettingsContext } from "../context/SettingsContextProvider";
 import { InputForm } from "./SetPomodor";
 
 interface Props {
-    keycount: number;
     timer: number;
     animate: boolean;
 }
@@ -20,19 +19,29 @@ const reaming = ({ remainingTime }: timer) => {
     return <div className="valueTimer">{minutes + ":" + seconds}</div>;
 };
 
-export const Countdown = ({ keycount, timer, animate }: Props) => {
+export const Countdown = ({ timer, animate }: Props) => {
     const {
         pauseTimer,
         executing,
         setCurrentTime,
         toggleValueBtn,
+        pomodoro,
+        setpomodoro,
     } = useContext<Context>(SettingsContext);
 
     const complet = (exe: InputForm) => {
         if (exe.active === "work") {
-            setCurrentTime("short");
-            pauseTimer();
-            toggleValueBtn("short");
+            setpomodoro(prev => prev +1);
+            if (pomodoro === 4) {
+                setpomodoro(0);
+                setCurrentTime("long");
+                pauseTimer();
+                toggleValueBtn("long");
+            } else {
+                setCurrentTime("short");
+                pauseTimer();
+                toggleValueBtn("short");
+            }
         } else {
             setCurrentTime("work");
             pauseTimer();
