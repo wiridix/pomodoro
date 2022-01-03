@@ -16,7 +16,7 @@ import {
     StopCircle,
     FreeBreakfast,
     AccessTime,
-    Snooze
+    Snooze,
 } from "@mui/icons-material";
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
         updateExecute,
         pauseTimer,
         valueBtnNavigation,
-        handleChangeValue
+        handleChangeValue,
     } = useContext(SettingsContext);
 
     useEffect(() => {
@@ -54,61 +54,51 @@ function App() {
                         <Container maxWidth="lg">
                             <Grid
                                 container
-                                rowSpacing={3}
+                                rowSpacing={5}
                                 columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-                                sx={{
-                                    textAlign: "center",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    flexDirection: "column",
-                                }}
+                                className="container-grid"
+                                columns={12}
                             >
-                                <Grid item xs={12}>
-                                    <Box
-                                        sx={{
-                                            width: "250px",
-                                        }}
-                                    >
-                                        <Paper elevation={6}>
-                                            <BottomNavigation
-                                                value={valueBtnNavigation}
-                                                onChange={handleChangeValue}
-                                            >
-                                                <BottomNavigationAction
-                                                    label="Pomodoro"
-                                                    value="work"
-                                                    icon={<AccessTime />}
-                                                    onClick={() =>
-                                                        setCurrentTime("work")
-                                                    }
-                                                />
-                                                <BottomNavigationAction
-                                                    label="Receso"
-                                                    value="short"
-                                                    icon={<FreeBreakfast />}
-                                                    onClick={() =>
-                                                        setCurrentTime("short")
-                                                    }
-                                                />
-                                                <BottomNavigationAction
-                                                    label="Descanso"
-                                                    value="long"
-                                                    icon={<Snooze />}
-                                                    onClick={() =>
-                                                        setCurrentTime("long")
-                                                    }
-                                                />
-                                            </BottomNavigation>
-                                        </Paper>
-                                    </Box>
+                                <Grid item xs={12} sm={6}>
+                                    <Paper elevation={6}>
+                                        <BottomNavigation
+                                            value={valueBtnNavigation}
+                                            onChange={handleChangeValue}
+                                        >
+                                            <BottomNavigationAction
+                                                label="Pomodoro"
+                                                value="work"
+                                                icon={<AccessTime />}
+                                                onClick={() =>
+                                                    setCurrentTime("work")
+                                                }
+                                            />
+                                            <BottomNavigationAction
+                                                label="Receso"
+                                                value="short"
+                                                icon={<FreeBreakfast />}
+                                                onClick={() =>
+                                                    setCurrentTime("short")
+                                                }
+                                            />
+                                            <BottomNavigationAction
+                                                label="Descanso"
+                                                value="long"
+                                                icon={<Snooze />}
+                                                onClick={() =>
+                                                    setCurrentTime("long")
+                                                }
+                                            />
+                                        </BottomNavigation>
+                                    </Paper>
                                 </Grid>
-                                <Grid item xs={12}>
+                                <Grid item xs={12} sm={6} className="countClock">
                                     <Countdown
                                         timer={timer}
                                         animate={startAnimate}
                                     />
                                 </Grid>
-                                <Grid item xs={12}>
+                                <Grid item xs={12} sm={6} className="btn-order">
                                     {!startAnimate ? (
                                         <ButtonCall _callback={startTime}>
                                             <PlayCircle />
@@ -119,7 +109,7 @@ function App() {
                                         </ButtonCall>
                                     )}
                                 </Grid>
-                                <Grid item xs={12}>
+                                <Grid item xs={12} sm={6}>
                                     <ButtonCall _callback={settingsBtn}>
                                         Configurar
                                     </ButtonCall>

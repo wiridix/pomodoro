@@ -3,5 +3,23 @@
 }
 
 .valueTimer{
-    font-size: 3.5rem;
+    font-size: 4.5rem;
+}
+
+.countClock{
+    text-align: -webkit-center;
+    text-align: -moz-center;
+}
+
+.container-grid{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+@media (min-width:600px) {
+    .btn-order{
+        order: 1;
+    }
 }
