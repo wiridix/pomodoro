@@ -18,6 +18,7 @@ import {
     AccessTime,
     Snooze,
 } from "@mui/icons-material";
+import { indigo } from "@mui/material/colors";
 
 function App() {
     const {
@@ -92,7 +93,12 @@ function App() {
                                         </BottomNavigation>
                                     </Paper>
                                 </Grid>
-                                <Grid item xs={12} sm={6} className="countClock">
+                                <Grid
+                                    item
+                                    xs={12}
+                                    sm={6}
+                                    className="countClock"
+                                >
                                     <Countdown
                                         timer={timer}
                                         animate={startAnimate}
@@ -113,6 +119,19 @@ function App() {
                                     <ButtonCall _callback={settingsBtn}>
                                         Configurar
                                     </ButtonCall>
+                                </Grid>
+                                <Grid
+                                    item
+                                    xs={12}
+                                    style={{ order: 1, color: indigo[500] }}
+                                >
+                                    {/* <h4>Pomodoro {pomodoro} de 4 </h4> */}
+                                    <Box
+                                        component="span"
+                                        sx={{ p: 2, border: "1px dashed grey" }}
+                                    >
+                                        Pomodoro {pomodoro} de 4
+                                    </Box>
                                 </Grid>
                             </Grid>
                         </Container>

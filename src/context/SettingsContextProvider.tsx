@@ -63,6 +63,7 @@ export const SettingsContextProvider = (props: Props) => {
     const settingsBtn = () => {
         setexecuting({} as InputForm);
         settimer(0);
+        setpomodoro(1)
     };
 
     const updateExecute = (updateSettings: InputForm) => {

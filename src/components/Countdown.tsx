@@ -29,11 +29,14 @@ export const Countdown = ({ timer, animate }: Props) => {
         setpomodoro,
     } = useContext<Context>(SettingsContext);
 
+    const aud:HTMLAudioElement = new Audio("/alarm-wood.mp3");
+
     const complet = (exe: InputForm) => {
+        aud.play()
         if (exe.active === "work") {
-            setpomodoro(prev => prev +1);
+            setpomodoro((prev) => prev + 1);
             if (pomodoro === 4) {
-                setpomodoro(0);
+                setpomodoro(1);
                 setCurrentTime("long");
                 pauseTimer();
                 toggleValueBtn("long");
